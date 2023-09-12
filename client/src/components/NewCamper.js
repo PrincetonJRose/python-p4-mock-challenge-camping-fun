@@ -52,11 +52,13 @@ function NewCamper({ onAddCamper }) {
           onChange={(e) => setAge(e.target.value)}
         />
       </div>
-      {errors.map((err) => (
-        <p key={err} style={{ color: "red" }}>
-          {err}
-        </p>
-      ))}
+      {errors.length > 0
+        ? errors.map((err) => (
+            <p key={err} style={{ color: "red" }}>
+              {err}
+            </p>
+          ))
+        : null}
       <button type="submit">Submit</button>
     </form>
   );

@@ -2,6 +2,8 @@ import pytest
 
 from app import app
 from models import db, Activity, Signup, Camper
+from faker import Faker
+
 
 class TestModels:
     '''SQLAlchemy models in models.py'''
@@ -21,11 +23,11 @@ class TestModels:
         '''require campers to have ages between 8 and 18, inclusive.'''
 
         with pytest.raises(ValueError):
-            Camper(name='Ben', age=0)
+            Camper(name=Faker().name(), age=0)
 
         with pytest.raises(ValueError):
-            Camper(name='Prabhdip', age=19)
-    
+            Camper(name=Faker().name(), age=19)
+
     def test_validates_signup_time(self):
         '''requires signups to have integer times between 0 and 23, inclusive.'''
 

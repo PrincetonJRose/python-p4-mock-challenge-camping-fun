@@ -7,20 +7,22 @@ from models import db, Activity, Signup, Camper
 
 fake = Faker()
 
+
 def create_activities():
     activities = []
-    for _ in range(25):
+    for _ in range(10):
         a = Activity(
             name=fake.sentence(),
             difficulty=randint(1, 5)
         )
         activities.append(a)
-    
+
     return activities
+
 
 def create_campers():
     campers = []
-    for _ in range(120):
+    for _ in range(10):
         c = Camper(
             name=fake.name(),
             age=rc(range(8, 19))
@@ -29,17 +31,19 @@ def create_campers():
 
     return campers
 
+
 def create_signups(activities, campers):
     signups = []
-    for _ in range(720):
+    for _ in range(20):
         s = Signup(
             time=rc(range(24)),
             camper_id=rc([camper.id for camper in campers]),
-            activity_id =rc([activity.id for activity in activities])
+            activity_id=rc([activity.id for activity in activities])
         )
         signups.append(s)
-    
+
     return signups
+
 
 if __name__ == '__main__':
 
